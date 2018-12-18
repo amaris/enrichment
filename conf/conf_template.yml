@@ -1,0 +1,24 @@
+mongodb:
+  hostname: 0.0.0.0
+  port: 27017
+  user:
+  password:
+  authSource:
+  db: targetDb
+  col: targetCol
+API:
+  name: TestAPI
+  hostname: http://myAPI
+  port: 8001
+  path: "/enrichData"
+  httpMethod: "POST"
+  parameters:
+    document: inputField
+InfoInjection:
+  keyToAdd: Enrichment
+  UpdatePeriodInDays: 30
+  batchSize: 300
+  input:
+    inputMongoPipeline: '[{"$project": {"result": "$Content"}}]' 
+    inputField: result
+port: 8050
